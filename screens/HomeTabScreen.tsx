@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import {
 	FlatList,
 	SafeAreaView,
-	StatusBar,
 	StyleSheet,
 	TouchableOpacity,
 } from 'react-native';
-
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text } from '../components/Themed';
 import { RootTabScreenProps, HomeNavItem } from '../types';
@@ -26,8 +24,11 @@ const DATA: Array<HomeNavItem> = [
 	},
 ];
 
-const Item = (item: any) => (
-	<TouchableOpacity style={styles.item}>
+const Item = (item: any, navigation: any) => (
+	<TouchableOpacity
+		style={styles.item}
+		onPress={() => item.navigation.navigate('FishTabScreen')}
+	>
 		<Text style={styles.title}>{item.title}</Text>
 	</TouchableOpacity>
 );
@@ -37,21 +38,22 @@ export default function HomeTabScreen({
 }: RootTabScreenProps<'HomeTab'>) {
 	const [selectedId, setSelectedId] = useState('');
 	const renderItem = ({ item }: { item: HomeNavItem }) => {
-		const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
-		const color = item.id === selectedId ? 'white' : 'black';
+		const searchBarProps = {
+			item,
+			navigation,
+		};
 		return (
 			<Item
-				item={item}
-				onPress={() => setSelectedId(item.id)}
-				backgroundColor={item.backgroundColor}
-				textColor={item.textColor}
+				{...searchBarProps}
+				// onPress={() => setSelectedId(id)}
 			/>
 		);
 	};
 	return (
 		<SafeAreaView style={styles.container}>
-			<FlatList<HomeNavItem>
+			<FlatList
 				data={DATA}
+				style={{ width: '95%' }}
 				renderItem={renderItem}
 				keyExtractor={(item) => item.id}
 				extraData={selectedId}
@@ -80,5 +82,7 @@ const styles = StyleSheet.create({
 		padding: 20,
 		marginVertical: 8,
 		marginHorizontal: 16,
+		backgroundColor: '#d1d1d1a9',
+		borderRadius: 10,
 	},
 });

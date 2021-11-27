@@ -23,6 +23,7 @@ import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import HomeTabScreen from '../screens/HomeTabScreen';
 import BugsTabScreen from '../screens/BugsTabScreen';
+import FishTabScreen from '../screens/FishTabScreen';
 import {
 	RootStackParamList,
 	RootTabParamList,
@@ -63,6 +64,11 @@ function RootNavigator() {
 				name="NotFound"
 				component={NotFoundScreen}
 				options={{ title: 'Oops!' }}
+			/>
+			<Stack.Screen
+				name="FishTabScreen"
+				component={FishTabScreen}
+				options={{ title: 'Fish' }}
 			/>
 			<Stack.Group screenOptions={{ presentation: 'modal' }}>
 				<Stack.Screen name="Modal" component={ModalScreen} />

@@ -16,9 +16,7 @@ const linking: LinkingOptions<RootStackParamList> = {
 			Root: {
 				screens: {
 					FishTab: {
-						screens: {
-							FishTabScreen: 'one',
-						},
+						screens: {},
 					},
 					BugsTab: {
 						screens: {
@@ -27,6 +25,7 @@ const linking: LinkingOptions<RootStackParamList> = {
 					},
 				},
 			},
+			FishTabScreen: 'FishTabScreen',
 			Modal: 'modal',
 			NotFound: '*',
 		},
